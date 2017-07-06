@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="resources/mui/css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav" style="background-color:#555555;">
+			<h1 id="title" class="mui-title" style="color:orange;">
+			<img src="resources/images/logo.png" style="float:left;height: 24px; margin-top: 10px;"/>
+			<span>中国ABS资产证券化分析网</span>
+		</h1>
+			<a id="sharebtn" class="mui-icon mui-icon-upload mui-pull-right" style="margin-left: 10px"></a>
+		</header>
+		<div id="content" class="mui-content" style="background-color:#797979;">
+
+		</div>
+		<nav class="mui-bar mui-bar-tab" style="background-color:#555555;">
+			<a id="app-tab1" class="mui-tab-item mui-active">
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="app-tab2" class="mui-tab-item">
+				<span class="mui-tab-label">产品</span>
+			</a>
+			<a id="app-tab3" class="mui-tab-item">
+				<span class="mui-tab-label">圈子</span>
+			</a>
+			<a id="app-tab4" class="mui-tab-item">
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script src="resources/mui/js/mui.js"></script>
+		<script type="text/javascript" src="resources/js/app.js"></script>
+		<script src="resources/js/dexie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/dexie.extend.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				//statusBarBackground:'#52AD34', 
+				gestureConfig: {}
+
+			});
+
+			var subpages = [{
+					id: 'app-tab1',
+					url: 'modules/best-practices/list-to-detail/listview.html',
+					styles: {
+						top: app.navBarTop,
+						bottom: app.fooBarBottom
+					}
+				},
+				{
+					id: 'app-tab2',
+					url: 'modules/tab-vertical-scroll.html',
+					styles: {
+						top: '0px',
+						bottom: app.fooBarBottom
+					}
+				},
+				{
+					id: 'app-tab3',
+					url: 'modules/tab-top-webview-main.html',
+					styles: {
+						top: app.navBarTop,
+						bottom: app.fooBarBottom
+					}
+				},
+				{
+					id: 'app-tab4',
+					url: 'modules/tabtopmain.html',
+					styles: {
+						top: '0px',
+						bottom: app.fooBarBottom
+					}
+				}
+			];
+
+			//检查引导页 创建页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				//深背景请使用白色状态栏(非沉浸模式使用)
+				//plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+				if(plus.navigator.isFullscreen())
+					plus.navigator.setFullscreen(false);
+				plus.navigator.setStatusBarBackground('#555555');
+				plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+
+				//初始化一些常用窗体
+				app.init();
+
+				database.initDB().news.get(1);
+
+				var self = plus.webview.currentWebview();
+				for(var i = 0; i < subpages.length; i++) {
+					var subpage = subpages[i];
+					subpage.view = plus.webview.create(subpage.url, subpage.id, subpage.styles);
+
+					if(i > 0) {
+						subpage.view.hide();
+
+					} else {
+						/*subpage.view.addEventListener('loaded',function(){  
+						 				
+						},false); */
+					}
+
+					self.append(subpage.view);
+
+				}
+
+			});
+
+			//当前激活选项
+			var activeTab = subpages[0];
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetId = this.getAttribute('id');
+				if(targetId == activeTab.id) {
+					return;
+				}
+				console.log(targetId);
+				var targetTab;
+				for(var i = 0; i < subpages.length; i++) {
+					if(subpages[i].id == targetId) {
+						targetTab = subpages[i];
+					}
+				}
+
+				targetTab.view.show('pop-in', 200, function() {
+					console.log("正在切换底部选项卡:" + JSON.stringify(targetTab));
+					mui.fire(targetTab.view, 'showed', {});
+				});
+
+				//隐藏当前;
+				activeTab.view.hide();
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+
+			document.getElementById('sharebtn').addEventListener('tap', function() {
+				app.onNavigator("http://www.cn-abs.com");
+			});
+		</script>
+	</body>
+
+</html>

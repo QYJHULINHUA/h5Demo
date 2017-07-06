@@ -1,0 +1,118 @@
+{
+	"index.html": {
+		"resources": [
+			"resources/mui/css/mui.min.css",
+			"modules/best-practices/list-to-detail/listview.html",
+			"resources/mui/js/mui.min.js",
+			"resources/images/logo.png",
+			"resources/js/appframe.js",
+			"resources/mui/fonts/mui.ttf",
+			"resources/js/app.js",
+			"resources/mui/js/mui.js",
+			"resources/js/dexie.js",
+			"resources/js/dexie.extend.js"
+		],
+		"refer": [
+			"modules/tab-vertical-scroll.html",
+			"modules/best-practices/list-to-detail/listview.html",
+			"modules/tab-top-webview-main.html",
+			"modules/tab-webview-subpage-chat.html",
+			"modules/account/login.html",
+			"modules/tabtopmain.html",
+			"modules/common/loading.html"
+		]
+	},
+	"modules/tab-vertical-scroll.html": {
+		"resources": [
+			"resources/css/app.css",
+			"resources/mui/fonts/mui.ttf",
+			"resources/mui/css/mui.min.css",
+			"resources/mui/js/mui.min.js"
+		],
+		"refer": []
+	},
+	"modules/best-practices/list-to-detail/detail.html": {
+		"resources": [
+			"resources/js/vue.min.js",
+			"modules/best-practices/list-to-detail/list-to-detail.css",
+			"resources/mui/css/mui.css",
+			"resources/mui/js/mui.min.js",
+			"resources/mui/js/mui.js"
+		],
+		"refer": []
+	},
+	"modules/best-practices/list-to-detail/listview.html": {
+		"resources": [
+			"resources/js/vue.js",
+			"resources/js/common.js",
+			"resources/js/appframe.js",
+			"resources/mui/css/mui.min.css",
+			"resources/mui/js/mui.min.js",
+			"resources/js/app.js",
+			"resources/mui/js/mui.js",
+			"resources/js/storeage.js",
+			"resources/js/dexie.js",
+			"resources/js/listView.js",
+			"resources/js/dexie.extend.js"
+		],
+		"refer": [
+			"modules/best-practices/list-to-detail/detail.html"
+		]
+	},
+	"modules/tab-top-webview-main.html": {
+		"resources": [
+			"modules/tab-webview-subpage-chat.html",
+			"modules/webviewGroup.js",
+			"modules/best-practices/list-to-detail/listview.html",
+			"resources/js/webviewGroup.js",
+			"resources/mui/css/mui.min.css",
+			"resources/mui/js/mui.min.js",
+			"resources/images/longlogo.png",
+			"resources/js/app.js",
+			"resources/js/webviewgroup.js",
+			"resources/mui/css/mui.css"
+		],
+		"refer": [
+			"modules/tab-webview-subpage-chat.html",
+			"modules/best-practices/list-to-detail/listview.html",
+			"modules/common/loading.html"
+		]
+	},
+	"modules/tab-webview-subpage-chat.html": {
+		"resources": [
+			"resources/mui/fonts/mui.ttf"
+		],
+		"refer": []
+	},
+	"modules/account/login.html": {
+		"resources": [
+			"resources/mui/css/mui.min.css",
+			"resources/mui/js/mui.min.js",
+			"resources/mui/js/mui.js"
+		],
+		"refer": []
+	},
+	"modules/tabtopmain.html": {
+		"resources": [
+			"modules/best-practices/list-to-detail/listview.html",
+			"resources/mui/css/mui.min.css",
+			"resources/mui/js/mui.min.js",
+			"resources/js/webviewGroup.js",
+			"resources/js/app.js",
+			"resources/js/webviewgroup.js"
+		],
+		"refer": [
+			"modules/best-practices/list-to-detail/listview.html",
+			"modules/common/loading.html"
+		]
+	},
+	"modules/common/loading.html": {
+		"href": "modules/common/loading.html",
+		"resources": [
+			"resources/mui/css/mui.min.css",
+			"resources/images/logo.png"
+		],
+		"refer": [],
+		"priority": 0
+	}
+}
